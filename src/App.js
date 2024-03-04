@@ -28,9 +28,13 @@ const listData = [
 class App extends Component {
   renderList() {
     return listData.map((item) => {
-      return <ListItem key={item.id} data={item} />;
+      return <ListItem key={item.id} data={item} onDelete={this.handleDelete} />;
     });
   }
+
+  handleDelete = (id) => {
+    console.log("delete: ", id);
+  };
 
   render() {
     return (
