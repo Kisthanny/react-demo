@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import "./App.css";
 import ListItem from "./components/listItem";
 // import ListItem from "./components/listItemFunc";
+import ItemA from "./components/hoc/ItemA";
+import ItemB from "./components/hoc/ItemB";
+import ItemC from "./components/rp/ItemC";
 
 class App extends Component {
   constructor() {
@@ -52,6 +55,9 @@ class App extends Component {
           <div className="text-center">购物车是空的</div>
         )}
         {this.renderList()}
+        <ItemA id="1"></ItemA>
+        <ItemB></ItemB>
+        <ItemC></ItemC>
       </div>
     );
   }
