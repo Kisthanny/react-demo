@@ -6,10 +6,10 @@ const NavBar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/product">Product</Link>
+        <Link to="/product/2">Product</Link>
       </li>
       <li>
-        <Link to="/posts">Posts</Link>
+        <Link to="/posts?uid=abc">Posts</Link>
       </li>
       <li>
         <Link to="/admin">Admin</Link>
