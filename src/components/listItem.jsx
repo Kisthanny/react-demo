@@ -1,40 +1,47 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import style from "./listItem.module.css";
 import classnames from "classnames/bind";
 import cn from "classnames";
 
 const cls = classnames.bind(style);
 
-let count = 0;
-
-class ListItem extends Component {
+class ListItem extends PureComponent {
   constructor(props) {
     super(props);
+    this.state = {
+      count: 0,
+    };
   }
 
   manageCount(count) {
     return `${count}个`;
   }
 
-  countProcessor() {
-    if (count < 0) {
-      count = 0;
-    }
-  }
-
   handleDecrease = (e) => {
-    console.log("-");
-    count--;
-    this.countProcessor();
+    if (this.state.count === 0) {
+      return;
+    }
+    const count = this.state.count - 1;
+    this.setState({ count });
   };
 
   handleIncrease = (id) => {
-    console.log("+", id);
-    count++;
-    this.countProcessor();
+    if (this.state.count === 3) {
+      return;
+    }
+    const count = this.state.count + 1;
+    this.setState({ count });
   };
 
+//   shouldComponentUpdate(nextProps) {
+//     if (this.props.data.id === nextProps.data.id) {
+//       return false;
+//     }
+//     return true;
+//   }
+
   render() {
+    console.log("rendering...");
     const _cn = cn({
       "list-group-item-dark": !this.props.data.stock,
     });
@@ -55,7 +62,7 @@ class ListItem extends Component {
             {" "}
             -{" "}
           </button>
-          <span className={cls("digital")}>{count}</span>
+          <span className={cls("digital")}>{this.state.count}</span>
           <button
             onClick={() => this.handleIncrease(this.props.data.id)}
             type="button"
@@ -64,6 +71,9 @@ class ListItem extends Component {
             {" "}
             +{" "}
           </button>
+        </div>
+        <div className="col-1 list-group-item">
+          ${this.props.data.price * this.state.count}
         </div>
         <div className="col-1 list-group-item">
           <button
